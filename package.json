@@ -2,7 +2,7 @@
   "name": "kywt",
   "version": "1.0.0",
   "description": "kywt",
-  "author": "kywt",
+  "author": "kywt_zb",
   "private": true,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
