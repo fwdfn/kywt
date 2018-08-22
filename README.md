@@ -1,6 +1,6 @@
 # kywt
 
-> kywt
+> This is kywt management system Which is based on vue.js
 
 ## Build Setup
 
