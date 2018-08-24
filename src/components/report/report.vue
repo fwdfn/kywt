@@ -19,36 +19,29 @@
 						<span>凯艺维通有限公司</span>
 						<span>15:30</span>
 					</div>
-				</div>
-				<div class="info">
-					<div class="inner">
-						<span>【标题】2017年年度计划</span>
-						<span>2016年10月10号</span>
-						<br/>
-						<span>凯艺维通有限公司</span>
-						<span>15:30</span>
-					</div>
-				</div>
-				<div class="info">
-					<div class="inner">
-						<span>【标题】2017年年度计划</span>
-						<span>2016年10月10号</span>
-						<br/>
-						<span>凯艺维通有限公司</span>
-						<span>15:30</span>
-					</div>
-				</div>				
+				</div>	
 		</div>
 	</div>
 </template>
+
 <script>
+import Vue from 'vue'
+import axios from 'axios'
+import Qs from 'qs'
 import report_tab from '@/components/report/report_tab'
 export default {
   name: 'report',
   data () {
     return {   
+		user_id:'',		
     }
   },
+//   created:function(){
+// 	  let data={
+// 		  "user_id":self.GLOBAL.user_id,
+
+// 	  }
+//   },
   components: { 
   report_tab: report_tab,
   }, 

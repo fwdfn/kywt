@@ -1,20 +1,20 @@
 <template>
 	<div class="bg">
 		<div class="inner">
-		<router-link v-for="arr in res" :key="arr" class="info" tag="div" :to="{ name: 'detail_buy' }">	 
-			<div class="info_left">
-				<img :src="arr.img" style="width: 1.25rem;"/>
-				<p>{{arr.user_name}}</p>
-			</div>
-			<div class="info_right">
-				<span>物品申请</span>
-				<span>{{arr.create_time}}</span>
-				<p>物品名称：{{arr.name}}</p>
-				<p>需求时间：{{arr.required_time}}</p>
-				<p>用途：{{arr.use}}</p>
-				<p>{{arr.check}}</p>
-			</div>			
-		</router-link>			
+			<router-link v-for="arr in res" :key="arr" class="info" tag="div" :to="{name:'detail_buy',params: { id: arr.id}}">	 
+				<div class="info_left">
+					<img :src="arr.img" style="width: 1.25rem;"/>
+					<p>{{arr.user_name}}</p>
+				</div>
+				<div class="info_right">
+					<span>物品申请</span>
+					<span>{{arr.create_time}}</span>
+					<p>物品名称：{{arr.name}}</p>
+					<p>需求时间：{{arr.required_time}}</p>
+					<p>用途：{{arr.use}}</p>
+					<p>{{arr.check}}</p>
+				</div>			
+			</router-link>			
 		</div>
 		<router-link class="foot" tag="div" :to="{name:'need_buy'}">
 			<img src="../../assets/edit.png" alt="" />
@@ -33,7 +33,7 @@
 	import Vue from 'vue'
 	import { Toast } from 'mint-ui';
 	import axios from 'axios'
-	import Qs from 'qs'
+	import Qs from 'qs'	
 	export default {
 		name: 'buy',
 		data() {
@@ -51,7 +51,7 @@
 		mounted: function() {
 			const self = this;
 			let data = {
-				"user_id": self.GLOBAL.user_id,
+				"user_id": self.GLOBAL.user_id,			
 			}
 			axios({
 					method: 'post',
@@ -59,7 +59,8 @@
 					data: Qs.stringify(data)
 			}).then(function(response) {
 					if(response.data.code == '1') {
-					self.res = response.data.data;  	
+					self.res = response.data.data;  
+					console.log(self.res)	;
 					for(let i=0;i<self.res.length;i++ ){
 						if(self.res[i].status== 1 && self.res[i].m_status == 1 && self.res[i].a_status == 1){
 							self.examine="已通过"

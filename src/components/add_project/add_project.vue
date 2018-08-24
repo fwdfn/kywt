@@ -14,76 +14,79 @@
 				<span>请选择(必填)</span>
 				<img src="../../assets/arrow-right.png" alt="" />
 			</div>
-				<div class="info_tx">
-					<ul>
-						<li>
-							<img src="../../assets/tx.png"/>
-							<p>校长</p>
-						</li>				
-						<li>
-							<img src="../../assets/tx.png"/>
-							<p>校长</p>
-						</li>				
-						<li>
-							<img src="../../assets/tx.png"/>
-							<p>校长</p>
-						</li>				
-						<li>
-							<img src="../../assets/tx.png"/>
-							<p>校长</p>
-						</li>				
-						<li>
-							<img src="../../assets/tx.png"/>
-							<p>校长</p>
-						</li>				
-						<li>
-							<img src="../../assets/tx.png"/>
-							<p>校长</p>
-						</li>				
-						<li>
-							<img src="../../assets/tx.png"/>
-							<p>校长</p>
-						</li>				
-						<li>
-							<img src="../../assets/tx.png"/>
-							<p>校长</p>
-						</li>				
-						<li>
-							<img src="../../assets/tx.png"/>
-							<p>校长</p>
-						</li>				
-						<li>
-							<img src="../../assets/tx.png"/>
-							<p>校长</p>
-						</li>
-						<li>
-							<img src="../../assets/tx.png"/>
-							<p>校长</p>
-						</li>				
-						<li>
-							<img src="../../assets/all.png"/>
-							<p>更多</p>
-						</li>						
-					</ul>
+			<div class="info_tx">
+				<ul>
+					<!-- <li v-for="(arr, index) in res" :class="{'active':ind===index}" :key="arr.id"  @click="select(index)">
+						<img :src="arr.img"/>
+						<p>{{arr.name}}</p>
+					</li>		 -->
+					<li v-for="(arr,index) in res" :key="arr.id" data_enable=false  @click="select($event)" :class="{'active':classenable && index==current}">
+						<img :src="arr.img"/>
+						<p>{{arr.name}}</p>
+					</li>	
+
+					<!-- <li v-for="(item,index) in items" v-on:mouseover="addClassload(index)" v-on:mouseover="removeClassload(index)" v-bind:class="{ classred:classenable&&index==current}">
+						{{item.title}}
+					</li>											 -->
+				</ul>
 			</div>
-			<button class="btn">提交</button>
+			<button class="btn">提交</button>						
 		</div>
 	</div>
 </template>
 
+
 <script>
-export default {
-  name: 'add_project',
-  data () {
-    return {
-      
-    }
-  }
-}
+	import Vue from 'vue'
+	import axios from 'axios'
+	import Qs from 'qs'
+	// 为了给用户提供方便，让他们不用阅读文档就能加载模块，就要用到export default命令，为模块指定默认输出
+	export default {
+		// name:'add_project',
+		data(){
+			return {
+				user_id:'',
+				id:'',
+				name:'',
+				img:'',
+				res:[],
+				arr:[],	
+				ind:'',		
+				classenable:false,			
+			}
+		},
+		created:function(){
+			const self=this
+			let data={
+				"user_id":self.GLOBAL.user_id
+			}
+			axios({
+				method:'post',
+				url:self.GLOBAL.baseURL+'Project/execute_list',				
+				data:Qs.stringify(data)
+			}).then(function(response){				
+				self.res=response.data.data;				
+			}).catch(function(error){
+				 console.log(error);
+			})
+		},
+		methods:{
+			select:function(e){				
+			 console.log(e.target.data_enable);
+				//this.classenable=!this.classenable;
+				//this.current=index;
+				//console.log('qwre')
+			}
+		}
+	}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.active{
+	width: 1.3rem !important;
+	border:1px solid red !important;
+}
 .tabs {
     position: fixed;
     bottom: 0;
@@ -152,7 +155,8 @@ ul li {
 	width: 100%;
 }
 .info_tx li{
-	width: 0.75rem;
+	width: 1.3rem;
+	border:1px solid transparent;
 }
 .info_tx img{
 	width:  0.75rem;

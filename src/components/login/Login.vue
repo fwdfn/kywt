@@ -4,7 +4,7 @@
   		<img class="img_" src="../../assets/ic_icon.png" alt="" />
 	  	<div class="acc">
 	  		<img src="../../assets/id.png" alt="" />
-	  		<input type="number" name="phone" v-model="phone" id="" value="" placeholder="请输入账号或则手机号"/>
+	  		<input type="number" name="phone" v-model="phone" id="" value="" placeholder="请输入手机号"/>
 	  	</div>
 	  	<div class="acc password">
 	  		<img src="../../assets/key.png" alt="" />
@@ -67,8 +67,7 @@ export default {
 				    method: 'post',
 				    url: 'http://m.kywtwl.com/Login/login',
 				    data: Qs.stringify(data)
-				}).then(function (response) {
-						console.log(response);
+				}).then(function (response) {						
 					    if(response.data.code == '1'){
 							self.GLOBAL.user_id=response.data.data.user_id				    	
 					    	Toast({

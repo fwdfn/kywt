@@ -8,11 +8,11 @@
 					</div>
 					<div class="info">
 						<label for="">所在部门</label>
-						<input type="text" placeholder="新密码"/>
+						<input type="text" placeholder="所在部门"/>
 					</div>
 					<div class="info">
-						<label for="">职业名称</label>
-						<input type="text" placeholder="确认密码"/>
+						<label for="">职位</label>
+						<input type="text" placeholder="职位"/>
 					</div>					
 				</div>
 		</div>

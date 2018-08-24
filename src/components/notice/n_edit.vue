@@ -45,13 +45,14 @@ export default {
 				let data = {
 				    "id": self.$route.params.id,
 				}
-				console.log(self.$route)
+				//console.log(self.$route)
 				axios({
 				    method: 'post',
 				    url: self.GLOBAL.baseURL+'Notice/detail',
 				    data: Qs.stringify(data)
 				}).then(function (response) {
-						console.log(response);
+						//console.log(response);
+						console.log(data)
 					    if(response.data.code == '1'){
 //						self.$router.push({ path: '/tab/home' })
 					 	self.res = response.data.data;  

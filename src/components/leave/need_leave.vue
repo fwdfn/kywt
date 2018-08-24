@@ -23,7 +23,7 @@
 			</div>	
 			<div class="info_info">
 				<label for="">请假事由</label>
-				<textarea type="text" v-model="reason" placeholder="请输入请假事由"/></textarea>
+				<textarea type="text" v-model="reason" placeholder="请输入请假事由"></textarea>
 			</div>	
 			<mt-datetime-picker
 			    ref="picker"
