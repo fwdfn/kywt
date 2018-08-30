@@ -15,16 +15,12 @@
 				<img src="../../assets/arrow-right.png" alt="" />
 			</div>
 			<div class="info_tx">
-				<ul>
-					<!-- <li v-for="(arr, index) in res" :class="{'active':ind===index}" :key="arr.id"  @click="select(index)">
-						<img :src="arr.img"/>
-						<p>{{arr.name}}</p>
-					</li>		 -->
-					<li v-for="(arr,index) in res" :key="arr.id" data_enable=false  @click="select($event)" :class="{'active':classenable && index==current}">
+				<ul>					
+					<li v-for="arr in res" :key="arr.id"  @click="active(arr)" :class="{'active':classenable==arr}" >
 						<img :src="arr.img"/>
 						<p>{{arr.name}}</p>
 					</li>	
-
+					<!-- :class="{'active':classenable -->
 					<!-- <li v-for="(item,index) in items" v-on:mouseover="addClassload(index)" v-on:mouseover="removeClassload(index)" v-bind:class="{ classred:classenable&&index==current}">
 						{{item.title}}
 					</li>											 -->
@@ -34,7 +30,6 @@
 		</div>
 	</div>
 </template>
-
 
 <script>
 	import Vue from 'vue'
@@ -52,9 +47,10 @@
 				res:[],
 				arr:[],	
 				ind:'',		
-				classenable:false,			
+				classenable:false,						
 			}
 		},
+		props:["lie"],
 		created:function(){
 			const self=this
 			let data={
@@ -65,27 +61,25 @@
 				url:self.GLOBAL.baseURL+'Project/execute_list',				
 				data:Qs.stringify(data)
 			}).then(function(response){				
-				self.res=response.data.data;				
+				self.res=response.data.data;														
+				Vue.set(self.arr,'clicked',false);								 				
 			}).catch(function(error){
-				 console.log(error);
+				console.log(error);
 			})
 		},
 		methods:{
-			select:function(e){				
-			 console.log(e.target.data_enable);
-				//this.classenable=!this.classenable;
-				//this.current=index;
-				//console.log('qwre')
+			active:function(arr){	
+				this.classenable=arr;									
+			//this.classenable=!this.classenable;						
 			}
 		}
 	}
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .active{
 	width: 1.3rem !important;
-	border:1px solid red !important;
+	border:1px solid red !important; 
 }
 .tabs {
     position: fixed;
